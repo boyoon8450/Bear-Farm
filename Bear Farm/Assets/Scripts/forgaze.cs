@@ -22,7 +22,10 @@ public class forgaze : MonoBehaviour
 
         forinteraction.gazed_at = true;
         gazed = true;
-        //forinteraction.item_name = gameObject.name;
+        forinteraction.obj_name = gameObject.name;
+        //parent obejct의 이름을 보냄
+        forinteraction.bear_name = this.transform.parent.gameObject.name;
+        
 
 
     }
@@ -31,7 +34,8 @@ public class forgaze : MonoBehaviour
     {
         forinteraction.gazed_at = false;
         gazed = false;
-        //forPickup.item_name = null;
+        //forinteraction.bear_name = this.transform.parent.gameObject.name;
+
 
     }
 }
