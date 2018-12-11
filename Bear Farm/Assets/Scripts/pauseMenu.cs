@@ -8,25 +8,16 @@ public class pauseMenu : MonoBehaviour
 {
     public bool pause;
     public GameObject pauseMenuPanel;
-    //public GameObject pauseUI;
-    //public GameObject gameOverUI;
-    //public GameObject player;
-    //public GameObject button;
-    //public static bool clicked;
+    //public GameObject titleMenu;
+    public GameObject optionMenu;
+    public GameObject camera;
 
     // Use this for initialization
     void Start()
     {
-        //pause = false;
-        //pauseUI = GameObject.Find("pauseMenu");
-        //gameOverUI = GameObject.Find("gameOverMenu");
-        //gameOverUI.SetActive(false);
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //button = GameObject.Find("pauseButton");
-        //pauseUI.SetActive(false);
-        //Debug.Log(pause);
+
         Time.timeScale = 1;//scene 로드될때 사물들이 움직이게 한다
-                           //clicked = false;
+        optionMenu.SetActive(false);
         pauseMenuPanel.SetActive(false);
 
     }
@@ -47,54 +38,46 @@ public class pauseMenu : MonoBehaviour
         pause = !pause;
         if (pause)//정지상태라면
         {
-            //pauseUI.SetActive(true);//정지 메뉴가 보이게 한다
-            //button.SetActive(false);//정지 버튼이 사라지게 한다
-            Time.timeScale = 0;
+            Time.timeScale = 0;         
+            pauseMenuPanel.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y+1f, camera.transform.position.z)+ camera.transform.forward * 3f;
+            pauseMenuPanel.transform.rotation = camera.transform.rotation;
             pauseMenuPanel.SetActive(true);
-            //player.GetComponent<Char_control>().enabled = false;//화면 다른곳을 클릭해도 플레이어는 움직이지 않는다
-            //clicked = false;
+
         }
         else if (!pause)//정지상태가 아니라면
         {
-            Debug.Log("play");
-            //pauseUI.SetActive(false);//정지 메뉴를 안보이게 한다
-            //button.SetActive(true);//정지 버튼이 보이게 한다
             pauseMenuPanel.SetActive(false);
             Time.timeScale = 1;
-            //player.GetComponent<Char_control>().enabled = true;//플레이어가 다시 움직일 수 있게 한다
-            //clicked = false;
+
         }
     }
 
     public void Resume()
     {
-        //SoundManager.instance.PlaySoundTime("click", 0.5f);
-        //GameObject.Find("field").GetComponent<AudioSource>().Play();
+
         pause = false;
-        //pauseUI.SetActive(false);//정지 메뉴를 안보이게 한다
-        //button.SetActive(true);//정지 버튼이 다시 보이게 한다
         Time.timeScale = 1;//다시 움직이게 한다
-        //player.GetComponent<Char_control>().enabled = true;//플레이어가 다시 움직일 수 있게 한다
+
 
     }
 
-    //public void mainMenu()//메인 메뉴로 돌아간다
-    //{
-    //    SoundManager.instance.PlaySoundTime("click", 0.5f);
-    //    SceneManager.LoadScene("Start");
-    //}
-    //public void Restart()
-    //{
+    public void onExitClick()
+    {
+        Application.Quit();
+    }
 
-    //    SoundManager.instance.PlaySoundTime("click", 0.5f);
-    //    int scene = SceneManager.GetActiveScene().buildIndex;
-    //    SceneManager.LoadScene(scene, LoadSceneMode.Single);
-    //}
+    public void onBackClick()
+    {
+        optionMenu.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
 
-    //public void deadMenu()//플레이어가 죽었을때 gameOverMenu가 보이게 한다
-    //{
-    //    GameObject.Find("field").GetComponent<AudioSource>().Stop();
-    //    //Debug.Log("deadmenu");
-    //    gameOverUI.SetActive(true);
-    //}
+    public void onOptionClick()
+    {
+        optionMenu.transform.position = pauseMenuPanel.transform.position;
+        optionMenu.transform.rotation = pauseMenuPanel.transform.rotation;
+        pauseMenuPanel.SetActive(false);
+        optionMenu.SetActive(true);
+    }
+
 }
