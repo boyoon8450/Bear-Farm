@@ -20,6 +20,7 @@ public class EnemyScript : MonoBehaviour
     int spawnPointIndex;
     public int score = 0;
     public Text scoreText;
+    private int hitpoints = 1;
 
     void Start()
     {
@@ -44,12 +45,11 @@ public class EnemyScript : MonoBehaviour
 
     void TakeDamage()
     {
-        Debug.Log("dead " + gameObject.name);
+        Debug.Log("Take Damage " + gameObject.name);
     //    enemyAnim.SetBool("isDead", true);
 
     //    if (enemyAnim.GetBool("isDead") == true)
     //    {
-            Debug.Log("isDead true - setActive false");
             gameObject.SetActive(false);
     //    }
 
@@ -71,13 +71,22 @@ public class EnemyScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Bullet")
         {
-            Debug.Log("checked!!!!!!" + gameObject.name);
-            score = score + 50;
-            scoreText.text = "Score : " + score.ToString();
+         //   hitpoints--;
 
-            TakeDamage();
-            NewSpawn();
+            //   if (hitpoints >= 0)
+            //   {
+            if (gameObject.name == "Enemy")
+                score = score + 25;
+            else
+                score = score + 50;
 
+                Debug.Log("bullet" + gameObject.name);
+
+                scoreText.text = "Score : " + score.ToString();
+
+        //    }
+                TakeDamage();
+                NewSpawn();
 
         }
 
