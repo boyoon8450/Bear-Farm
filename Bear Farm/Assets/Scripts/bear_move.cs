@@ -7,6 +7,7 @@ public class bear_move : MonoBehaviour
     NavMeshAgent navMeshAgent;
     NavMeshPath path;
     public float timeforNewPath;
+    public float timeforNewDesire;
     bool inCoRoutine; //movement 용
     bool inCoRoutine2; //intearction 용
 
@@ -20,7 +21,7 @@ public class bear_move : MonoBehaviour
     AnimatorController animating;
 
     //desire check //이미 요구가 떠있다면 또 뜨지 않게
-    bool desire;
+    public bool desire;
 
     //밤인지 아닌지 check
     public bool day;
@@ -31,6 +32,8 @@ public class bear_move : MonoBehaviour
 
     void Awake()
     {
+        timeforNewPath = Random.Range(10, 30);
+        timeforNewDesire = Random.Range(20, 50);
         animating = animate.GetComponent<AnimatorController>();
         day = true;
 
@@ -48,9 +51,6 @@ public class bear_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (day) //낮일 때 움직임
         {
 
@@ -104,7 +104,7 @@ public class bear_move : MonoBehaviour
     {
 
         inCoRoutine = true;
-
+        timeforNewPath = Random.Range(10, 30);
         yield return new WaitForSeconds(timeforNewPath);
 
         GetNewPath();
@@ -137,8 +137,8 @@ public class bear_move : MonoBehaviour
     {
 
         inCoRoutine2 = true;
-
-        yield return new WaitForSeconds(15);
+        timeforNewDesire = Random.Range(20, 50);
+        yield return new WaitForSeconds(timeforNewDesire);
         cake.SetActive(true);
         desire = true;
 
