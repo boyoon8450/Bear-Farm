@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
     private Transform player;
     int MoveSpeed = 1;
-    int MaxDist = 25;
+    int MaxDist = 20;
     int MinDist = 1;
     public float health = 50f;
 
@@ -51,6 +51,7 @@ public class EnemyScript : MonoBehaviour
     //    if (enemyAnim.GetBool("isDead") == true)
     //    {
             gameObject.SetActive(false);
+            this.transform.parent.gameObject.SetActive(false);
     //    }
 
     }
@@ -59,10 +60,14 @@ public class EnemyScript : MonoBehaviour
     {
         if (!isCreated)
         {
-            Debug.Log("spawn");
+            
             gameObject.SetActive(true);
+            this.transform.parent.gameObject.SetActive(true);
+            Debug.Log("spawn");
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
+            Debug.Log("spawn2");
             Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            Debug.Log("spawnfinish");
             isCreated = true;
         }
     }
@@ -71,22 +76,27 @@ public class EnemyScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Bullet")
         {
-         //   hitpoints--;
+            //  hitpoints--;
 
             //   if (hitpoints >= 0)
             //   {
-            if (gameObject.name == "Enemy")
-                score = score + 25;
-            else
+            if (gameObject.name == "enemyController")
+            {
                 score = score + 50;
 
                 Debug.Log("bullet" + gameObject.name);
 
                 scoreText.text = "Score : " + score.ToString();
-
-        //    }
                 TakeDamage();
                 NewSpawn();
+
+
+            }
+
+                
+
+        //    }
+                
 
         }
 
