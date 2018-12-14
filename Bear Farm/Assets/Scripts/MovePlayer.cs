@@ -23,12 +23,14 @@ public class MovePlayer : MonoBehaviour
     public GameObject gun;
     public GameObject aim;
 
+    EnemyScript enemyScript;
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         vrCamera = Camera.main.transform;
-
+    //    enemyScript = GameObject.Find("enemyController").GetComponent<EnemyScript>();
     }
 
     // Update is called once per frame
