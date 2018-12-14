@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour {
         //float t = Time.time - startTime;
         currentTime -= 1 * Time.deltaTime;
         //print(currentTime);
-        timerText.text = ((int)currentTime).ToString();
+        timerText.text = "Time : "+((int)currentTime).ToString();
 
         if(currentTime <=0)
         {
