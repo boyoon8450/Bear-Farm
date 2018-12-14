@@ -63,13 +63,12 @@ public class DataManager : MonoBehaviour
             haveBear[i] = int.Parse(t_haveBear[i]);
             if(haveBear[i] == 1)
             {
-                intimacy_BearNum++;
+                if (i < 5)
+                    intimacy_BearNum++;
+                else
+                    score_BearNum++;
             }
             bearIntimacy[i] = int.Parse(t_bearIntimacy[i]);
-            if (haveBear[i] == 1)
-            {
-                score_BearNum++;
-            }
         }
     }
 

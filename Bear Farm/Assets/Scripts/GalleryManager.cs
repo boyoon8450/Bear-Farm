@@ -11,6 +11,7 @@ public class GalleryManager : MonoBehaviour
     GameObject[] upsideBear = new GameObject[5];
     GameObject[] downsideBear = new GameObject[5];
     GameObject[] grayBear = new GameObject[10];
+    GameObject[] textObj = new GameObject[10];
     //  Use this for initialization
     void Start()
     {
@@ -27,16 +28,21 @@ public class GalleryManager : MonoBehaviour
                 grayBear[i] = GameObject.Find(gBearN);
                 grayBear[i].SetActive(false);
             }
-            Debug.Log(name);
+            //Debug.Log(name);
             if (i < 5)
             {
                 upsideBear[i] = GameObject.Find(name);
                 upsideBear[i].SetActive(false);
+                if (i != 0)
+                {
+                    textObj[i] = GameObject.Find("LOVE_0" + i.ToString());
+                }
             }
             else
             {
                 downsideBear[i-5] = GameObject.Find(name);
                 downsideBear[i - 5].SetActive(false);
+                textObj[i] = GameObject.Find("SCORE_0" + (i-5).ToString());
             }
         }
 
@@ -49,7 +55,7 @@ public class GalleryManager : MonoBehaviour
         {
             if (!background.activeInHierarchy)
             {
-                print("hi~!!!!! active");
+                //print("hi~!!!!! active");
                 showGallery();
             }
             else
@@ -76,13 +82,17 @@ public class GalleryManager : MonoBehaviour
                 if (temp[i] == 1)
                 {
                     upsideBear[i].SetActive(true);
-                    if(i != 0)
+                    if (i != 0)
+                    {
+                        textObj[i].SetActive(false);
                         grayBear[i].SetActive(false);
+                    }
                 }
                 else
                 {
                     upsideBear[i].SetActive(false);
                     grayBear[i].SetActive(true);
+                    textObj[i].SetActive(true);
                 }
             }
             else
@@ -91,12 +101,14 @@ public class GalleryManager : MonoBehaviour
                 {
                     downsideBear[i-5].SetActive(true);
                     grayBear[i].SetActive(false);
+                    textObj[i].SetActive(false);
 
                 }
                 else
                 {
                     downsideBear[i-5].SetActive(false);
                     grayBear[i].SetActive(true);
+                    textObj[i].SetActive(true);
                 }
             }
         }
@@ -107,8 +119,12 @@ public class GalleryManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            if(i!=0)
+            if (i != 0)
+            {
                 grayBear[i].SetActive(false);
+                textObj[i].SetActive(false);
+            }
+                
             if (i < 5)
             {
                 upsideBear[i].SetActive(false);
