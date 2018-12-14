@@ -13,6 +13,7 @@ public class pauseMenu : MonoBehaviour
     //public GameObject titleMenu;
     public GameObject optionMenu;
     public GameObject camera;
+    AudioSource source;
 
     // Use this for initialization
     void Start()
@@ -22,6 +23,7 @@ public class pauseMenu : MonoBehaviour
         Time.timeScale = 1;//scene 로드될때 사물들이 움직이게 한다
         optionMenu.SetActive(false);
         pauseMenuPanel.SetActive(false);
+        source = gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -66,11 +68,13 @@ public class pauseMenu : MonoBehaviour
 
     public void onExitClick()
     {
+        source.Play();
         Application.Quit();
     }
 
     public void onBackClick()
     {
+        source.Play();
         optionMenu.SetActive(false);
         pauseMenuPanel.SetActive(true);
         optionOn = false;
@@ -78,6 +82,7 @@ public class pauseMenu : MonoBehaviour
 
     public void onOptionClick()
     {
+        source.Play();
         optionMenu.transform.position = pauseMenuPanel.transform.position;
         optionMenu.transform.rotation = pauseMenuPanel.transform.rotation;
         pauseMenuPanel.SetActive(false);

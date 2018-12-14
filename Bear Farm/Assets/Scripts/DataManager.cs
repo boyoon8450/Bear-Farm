@@ -51,6 +51,7 @@ public class DataManager : MonoBehaviour
     public void Load()
     {
         string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/0/0/0/0/0/0/0/0/0").Split('/');
+        //string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/1/1/1/1/1/1/1/1/1").Split('/');
         string[] t_bearIntimacy = PlayerPrefs.GetString("BearIntimacy", "0/0/0/0/0/0/0/0/0/0").Split('/');
         totalIntimacy = PlayerPrefs.GetInt("Intimacy", 0);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -62,13 +63,12 @@ public class DataManager : MonoBehaviour
             haveBear[i] = int.Parse(t_haveBear[i]);
             if(haveBear[i] == 1)
             {
-                intimacy_BearNum++;
+                if (i < 5)
+                    intimacy_BearNum++;
+                else
+                    score_BearNum++;
             }
             bearIntimacy[i] = int.Parse(t_bearIntimacy[i]);
-            if (haveBear[i] == 1)
-            {
-                score_BearNum++;
-            }
         }
     }
 
@@ -80,7 +80,7 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", highScore);
     }
 
-    public int[] returnBearInfo()
+    public static int[] returnBearInfo()
     {
         return haveBear;
     }
@@ -94,8 +94,18 @@ public class DataManager : MonoBehaviour
     {
         return highScore;
     }
+    
+    public static void updateScoreInfo(int score)
+    {
 
-    public static void updateData(int day,int index)
+    }
+
+    public static void updateIntimacyInfo(int intimacy)
+    {
+
+    }
+
+    public static void updateBearInfo(int day,int index)
     {
         int i = 0;
         for (i = 0; i <= index; i++)
