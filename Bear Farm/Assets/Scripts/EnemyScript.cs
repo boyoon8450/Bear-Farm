@@ -83,11 +83,5 @@ public class EnemyScript : MonoBehaviour
                 TakeDamage();
             }
         }
-
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("player");
-            //곰돌이 친밀도 하락
-        }
     }
 }
