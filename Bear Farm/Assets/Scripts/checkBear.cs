@@ -62,7 +62,7 @@ public class checkBear : MonoBehaviour
             case 1:
                 for (i = 0; i < DataManager.STANDARDSIZE; i++)
                 {
-                    //Debug.Log("scoreStandard[" + i + "] is " + DataManager.scoreStandard[i]);
+                    Debug.Log("scoreStandard[" + i + "] is " + DataManager.scoreStandard[i]);
                     if (num >= DataManager.scoreStandard[0] && num <= DataManager.scoreStandard[i])
                     {
                         Debug.Log("return1!!!");

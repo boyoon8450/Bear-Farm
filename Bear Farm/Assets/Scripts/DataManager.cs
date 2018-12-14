@@ -41,6 +41,7 @@ public class DataManager : MonoBehaviour
             //일단 둘 다 50부터 250까지로 설정해 둠 ㅇ0ㅇ)
             intimacyStandard[i] = 50 * (i + 1);
             scoreStandard[i] = 50 * (i + 1);
+            Debug.Log("scoreStandard[" + i + "] is " + scoreStandard[i]);
         }
         intimacy_BearNum = 0;
         score_BearNum = 0;
