@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour {
     {
         if(other.gameObject.tag=="Enemy")
         {
+            Debug.Log("bullet disappear");
             Destroy(gameObject);
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     private Transform player;
-    int MoveSpeed = 1;
+    int MoveSpeed = 2;
     int MaxDist = 20;
     int MinDist = 1;
 
@@ -21,12 +21,12 @@ public class EnemyScript : MonoBehaviour
     public Text scoreText;
     private int hitpoints = 0;
     bool isDead = false;
-
-    DataManager datamanager;
+    GameObject bullet;
 
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
+        bullet = GameObject.Find("Bullet");
     }
 
     void Update()
@@ -38,8 +38,10 @@ public class EnemyScript : MonoBehaviour
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
             if (Vector3.Distance(transform.position, player.position) <= MinDist)
             {
-                //곰돌이 친밀도 하락
-                //아니면 OnTriggerEnter에서 친밀도 하락 조절
+                DataManager.totalIntimacy -= 10;
+                NewSpawn();
+
+                TakeDamage();
             }
         }
 
@@ -56,9 +58,10 @@ public class EnemyScript : MonoBehaviour
         if (!isCreated)
         {
             gameObject.SetActive(true);
-            spawnPointIndex = Random.Range(0, spawnPoints.Length - 5);
-
+            spawnPointIndex = Random.Range(0, spawnPoints.Length);
+            
             Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            Debug.Log(spawnPointIndex);
             isCreated = true;
         }
     }
@@ -71,8 +74,9 @@ public class EnemyScript : MonoBehaviour
             isDead = true;
             if (hitpoints == 1)
             {
-                score = score + 50;
+                score = score + 30;
                 scoreText.text = "Score : " + score.ToString();
+                checkBear.canGetBear(1, score);
 
                 NewSpawn();
 
