@@ -18,7 +18,7 @@ public class checkBear : MonoBehaviour {
                     {
                         //이 경우, 현재 가지고 있는 곰의 개수보다 가질 수 있는 곰의 개수가 많은 것임
                         //따라서 데이터 업데이트
-                        DataManager.updateData(day, temp);
+                        DataManager.updateBearInfo(day, temp);
                     }
                     break;
                 case 1:
@@ -26,7 +26,7 @@ public class checkBear : MonoBehaviour {
                     {
                         //이 경우, 현재 가지고 있는 곰의 개수보다 가질 수 있는 곰의 개수가 많은 것임
                         //따라서 데이터 업데이트
-                        DataManager.updateData(day, temp);
+                        DataManager.updateBearInfo(day, temp);
                     }
                     break;
             }
