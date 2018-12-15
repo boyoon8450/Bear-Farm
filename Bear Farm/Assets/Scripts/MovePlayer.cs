@@ -25,12 +25,29 @@ public class MovePlayer : MonoBehaviour
 
     EnemyScript enemyScript;
 
+    //인아 day-night 바뀌는 코드 때문
+    public GameObject DayNightManager;
+    daynightchange daynightchange;
+
+    //인아 soundeffect
+    AudioSource sound;
+    public AudioClip gunfire;
+
+  
+
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         vrCamera = Camera.main.transform;
-    //    enemyScript = GameObject.Find("enemyController").GetComponent<EnemyScript>();
+        //    enemyScript = GameObject.Find("enemyController").GetComponent<EnemyScript>();
+
+        //인아 day-night 바뀌는 코드 때문
+        daynightchange = DayNightManager.GetComponent<daynightchange>();
+
+        //인아 sound effect
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,8 +59,9 @@ public class MovePlayer : MonoBehaviour
 
 
         //마우스 클릭하면 총알이 발사된다
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && daynightchange.check_day==false)
         {
+            sound.PlayOneShot(gunfire, 0.2f);
             Fire();
         }
 
@@ -52,6 +70,7 @@ public class MovePlayer : MonoBehaviour
     //player가 보고 있는 시선 방향에 따라 움직인다
     public void movePlayer()
     {
+        
         Vector3 movement = speed * new Vector3(vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x, 0f, vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z);
         //Vector3 movement = speed * new Vector3(-vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z, 0f, -vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x);
         movement.y = rb.velocity.y;
