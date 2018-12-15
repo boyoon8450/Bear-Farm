@@ -25,9 +25,12 @@ public class bear_move : MonoBehaviour
 
     //밤인지 아닌지 check
     public bool day;
+    public GameObject DayNightManager;
+    daynightchange daynightchange;
 
     //desire용 object 종류
     GameObject cake;
+
 
 
     void Awake()
@@ -35,7 +38,7 @@ public class bear_move : MonoBehaviour
         timeforNewPath = Random.Range(10, 30);
         timeforNewDesire = Random.Range(20, 50);
         animating = animate.GetComponent<AnimatorController>();
-        day = true;
+        daynightchange = DayNightManager.GetComponent<daynightchange>();
 
     }
 
@@ -44,14 +47,18 @@ public class bear_move : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
-        cake = GameObject.FindGameObjectWithTag("desire");
+        string check_cake;
+        check_cake = "Cake_" + gameObject.name.Substring(8);
+        cake = GameObject.Find(check_cake);
         cake.SetActive(false);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (day) //낮일 때 움직임
+        if (daynightchange.check_day) //낮일 때 움직임
         {
 
             navMeshAgent.isStopped = false;
@@ -85,6 +92,8 @@ public class bear_move : MonoBehaviour
         {
             animating.SetInt("animation, 6");
             navMeshAgent.isStopped = true;
+            cake.SetActive(false);
+            desire = false;
 
         }
 
