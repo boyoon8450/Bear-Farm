@@ -73,7 +73,6 @@ public class pauseMenu : MonoBehaviour
     public void onExitClick()
     {
         source.Play();
-        DataManager.Save();
         Application.Quit();
     }
 

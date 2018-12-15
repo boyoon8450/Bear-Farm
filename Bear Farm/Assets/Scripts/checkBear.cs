@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class checkBear : MonoBehaviour
 {
-    GameObject unlockImg;
-    GameObject Camera;
-
-    private void Start()
-    {
-        Camera = GameObject.Find("Main Camera");
-        unlockImg = GameObject.Find("unlockedImg");
-        unlockImg.SetActive(false);
-    }
 
     //낮이면 0, 밤이면 1을 매개변수로 보냄
     //그리고 친밀도/점수를 두번째 매개변수로 전송한다
-    public void canGetBear(int day, int num)
+    public static void canGetBear(int day, int num)
     {
         Debug.Log("cangetbear : num is " + num);
         int temp = returnIndex(day, num);
@@ -31,10 +22,6 @@ public class checkBear : MonoBehaviour
                         //이 경우, 현재 가지고 있는 곰의 개수보다 가질 수 있는 곰의 개수가 많은 것임
                         //따라서 데이터 업데이트
                         DataManager.updateBearInfo(day, temp);
-                        unlockImg.SetActive(true);
-                        unlockImg.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) + Camera.transform.forward * 2f;
-                        unlockImg.transform.rotation = Camera.transform.rotation;
-                        StartCoroutine(waiting());
                         Debug.Log("intimacy : bear created!!");
                     }
                     break;
@@ -44,10 +31,6 @@ public class checkBear : MonoBehaviour
                         //이 경우, 현재 가지고 있는 곰의 개수보다 가질 수 있는 곰의 개수가 많은 것임
                         //따라서 데이터 업데이트
                         DataManager.updateBearInfo(day, temp);
-                        unlockImg.SetActive(true);
-                        unlockImg.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) + Camera.transform.forward * 2f;
-                        unlockImg.transform.rotation = Camera.transform.rotation;
-                        StartCoroutine(waiting());
                         Debug.Log("score : bear created!!");
                     }
                     break;
@@ -58,7 +41,7 @@ public class checkBear : MonoBehaviour
 
     }
 
-    int returnIndex(int day, int num)
+    static int returnIndex(int day, int num)
     {
         Debug.Log("returnIndex : day is " + day + " and num is " + num);
         int index = -100;
@@ -98,11 +81,5 @@ public class checkBear : MonoBehaviour
         }
 
         return index;
-    }
-
-    IEnumerator waiting()
-    {
-        yield return new WaitForSeconds(1f);
-        unlockImg.SetActive(false);
     }
 }

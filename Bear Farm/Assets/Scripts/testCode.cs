@@ -16,14 +16,14 @@ public class testCode : MonoBehaviour {
             Debug.Log("0 clicked");
             DataManager.totalIntimacy += 10;
             Debug.Log("total intimacy : " + DataManager.totalIntimacy);
-            //checkBear.canGetBear(0,DataManager.totalIntimacy);
+            checkBear.canGetBear(0,DataManager.totalIntimacy);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("1 clicked");
             DataManager.highScore += 10;
             Debug.Log("highScore : " + DataManager.highScore);
-            //checkBear.canGetBear(1, DataManager.highScore);
+            checkBear.canGetBear(1, DataManager.highScore);
         }
     }
 }

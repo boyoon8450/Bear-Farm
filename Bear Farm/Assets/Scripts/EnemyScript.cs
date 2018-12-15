@@ -23,8 +23,6 @@ public class EnemyScript : MonoBehaviour
     bool isDead = false;
     GameObject bullet;
 
-    GameObject dataMG;
-
     //인아 day-night 바뀌는 코드 때문
     public GameObject DayNightManager;
     daynightchange daynightchange;
@@ -33,7 +31,6 @@ public class EnemyScript : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         bullet = GameObject.Find("Bullet");
-        dataMG = GameObject.Find("DataManager");
 
         //인아 day-night 바뀌는 코드 때문
         daynightchange = DayNightManager.GetComponent<daynightchange>();
@@ -86,7 +83,7 @@ public class EnemyScript : MonoBehaviour
             {
                 score = score + 30;
                 scoreText.text = "Score : " + score.ToString();
-                dataMG.GetComponent<checkBear>().canGetBear(1, score);
+                checkBear.canGetBear(1, score);
 
                 NewSpawn();
 
