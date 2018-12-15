@@ -65,6 +65,15 @@ public class MovePlayer : MonoBehaviour
             Fire();
         }
 
+        if (rb.velocity.magnitude < 0.1f)
+        {
+            sound.Play();
+        }
+        else
+        {
+            //sound.Pause();
+        }
+
     }
 
     //player가 보고 있는 시선 방향에 따라 움직인다
