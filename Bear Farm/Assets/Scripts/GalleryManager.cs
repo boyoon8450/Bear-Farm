@@ -79,7 +79,7 @@ public class GalleryManager : MonoBehaviour
         int[] temp = DataManager.returnBearInfo();
         for(int i = 0; i < 10; i++)
         {
-            print(i);
+            //print(i);
             if (i < 5)
             {
                 if (temp[i] == 1)

@@ -20,9 +20,9 @@ public class checkBear : MonoBehaviour
     //그리고 친밀도/점수를 두번째 매개변수로 전송한다
     public void canGetBear(int day, int num)
     {
-        Debug.Log("cangetbear : num is " + num);
+        //Debug.Log("cangetbear : num is " + num);
         int temp = returnIndex(day, num);
-        Debug.Log("temp is " + temp);
+        //Debug.Log("temp is " + temp);
         if (temp != -100)
         {
             switch (day)
@@ -37,7 +37,7 @@ public class checkBear : MonoBehaviour
                         unlockImg.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) + Camera.transform.forward * 2f;
                         unlockImg.transform.rotation = Camera.transform.rotation;
                         StartCoroutine(waiting());
-                        Debug.Log("intimacy : bear created!!");
+                        //Debug.Log("intimacy : bear created!!");
                         dManager.GetComponent<createBear>().setBear();
 
                     }
@@ -52,7 +52,7 @@ public class checkBear : MonoBehaviour
                         unlockImg.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) + Camera.transform.forward * 2f;
                         unlockImg.transform.rotation = Camera.transform.rotation;
                         StartCoroutine(waiting());
-                        Debug.Log("score : bear created!!");
+                        //Debug.Log("score : bear created!!");
                     }
                     break;
             }
@@ -64,7 +64,7 @@ public class checkBear : MonoBehaviour
 
     int returnIndex(int day, int num)
     {
-        Debug.Log("returnIndex : day is " + day + " and num is " + num);
+        //Debug.Log("returnIndex : day is " + day + " and num is " + num);
         int index = -100;
         int i = 0;
 
@@ -75,7 +75,7 @@ public class checkBear : MonoBehaviour
                 {
                     if (num > DataManager.intimacyStandard[0] && num <= DataManager.intimacyStandard[i])
                     {
-                        Debug.Log("return 0 !!!"+num);
+                        //Debug.Log("return 0 !!!"+num);
                         return i-1; // 해금될 수 있는 index의 최대를 return해줌
                     }
                     if (num >= DataManager.intimacyStandard[4])
@@ -87,10 +87,10 @@ public class checkBear : MonoBehaviour
             case 1:
                 for (i = 0; i < DataManager.STANDARDSIZE; i++)
                 {
-                    Debug.Log("scoreStandard[" + i + "] is " + DataManager.scoreStandard[i]);
+                    //Debug.Log("scoreStandard[" + i + "] is " + DataManager.scoreStandard[i]);
                     if (num >= DataManager.scoreStandard[0] && num <= DataManager.scoreStandard[i])
                     {
-                        Debug.Log("return1!!!");
+                        //Debug.Log("return1!!!");
                         return i-1; // 해금될 수 있는 index의 최대를 return해줌
                     }
                     if (num >= DataManager.scoreStandard[4])
