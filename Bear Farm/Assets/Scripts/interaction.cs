@@ -22,16 +22,29 @@ public class interaction : MonoBehaviour {
     public int interaction_K; //eveilbearA의 interacton rate
     public int interaction_L; //eveilbearA의 interacton rate
 
+    public int interaction_count; //밤낮 바뀌는거 때문에 5회 채우면 바뀜
+
     GameObject bear;
     bear_move bear_move;
 
+    public GameObject DayNightManager;
+    daynightchange daynightchange;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        daynightchange = DayNightManager.GetComponent<daynightchange>();
+        interaction_count = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(interaction_count == 5)
+        {
+            interaction_count = 0;
+            daynightchange.changetoNight();
+        }
+        
 
         if (gazed_at)
         {
@@ -48,6 +61,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 //A곰
                 else if (string.Compare(bear_name, "EvilbearA") == 0)
@@ -60,6 +74,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearC") == 0)
                 {
@@ -71,6 +86,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearD") == 0)
                 {
@@ -82,6 +98,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearE") == 0)
                 {
@@ -93,6 +110,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearF") == 0)
                 {
@@ -104,6 +122,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearG") == 0)
                 {
@@ -115,6 +134,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearH") == 0)
                 {
@@ -126,6 +146,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearI") == 0)
                 {
@@ -137,6 +158,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearJ") == 0)
                 {
@@ -148,6 +170,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearK") == 0)
                 {
@@ -159,6 +182,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
                 else if (string.Compare(bear_name, "EvilbearL") == 0)
                 {
@@ -170,6 +194,7 @@ public class interaction : MonoBehaviour {
                     bear = GameObject.Find(bear_name);
                     bear_move = bear.GetComponent<bear_move>();
                     bear_move.desire = false;
+                    interaction_count++;
                 }
             }
         }
