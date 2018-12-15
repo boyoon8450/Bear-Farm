@@ -49,7 +49,7 @@ public class DataManager : MonoBehaviour
     }
 
     //데이터 로드
-    public void Load()
+    public static void Load()
     {
         string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/0/0/0/0/0/0/0/0/0").Split('/');
         //string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/1/1/1/1/1/1/1/1/1").Split('/');
@@ -73,7 +73,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void Save()
+    public static void Save()
     {
         PlayerPrefs.SetString("BearInfo", makeString(haveBear));
         PlayerPrefs.SetString("BearIntimacy", makeString(bearIntimacy));
@@ -127,7 +127,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    string makeString(int[] arr)
+    static string makeString(int[] arr)
     {
         string str = "";
         int i;
