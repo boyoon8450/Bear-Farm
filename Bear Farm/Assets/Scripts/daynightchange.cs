@@ -11,6 +11,7 @@ public class daynightchange : MonoBehaviour {
 
 
     GameObject enemy;
+    GameObject enemyOriginal;
     GameObject gun;
     GameObject score;
 
@@ -18,12 +19,18 @@ public class daynightchange : MonoBehaviour {
     public AudioClip backday;
     public AudioClip backnight;
 
+    GameObject Data;
+
+
 	// Use this for initialization
 	void Start () {
         check_day = true;
 
         enemy = GameObject.Find("Enemy");
         enemy.SetActive(false);
+
+        enemyOriginal = GameObject.Find("EnemyOriginal");
+        enemyOriginal.SetActive(false);
 
         gun = GameObject.Find("Flare Gun");
         gun.SetActive(false);
@@ -39,6 +46,9 @@ public class daynightchange : MonoBehaviour {
 
         day = RenderSettings.skybox;
 
+        Data = GameObject.Find("DataManager");
+        
+
 
     }
 
@@ -51,11 +61,14 @@ public class daynightchange : MonoBehaviour {
         check_day = true;
         RenderSettings.skybox = day;
         enemy.SetActive(false);
+        enemyOriginal.SetActive(false);
         gun.SetActive(false);
         score.SetActive(false);
         music.clip = backday;
         music.volume = 0.4f;
         music.Play();
+
+        Data.GetComponent<createBear>().setBear();
     }
 
     public void changetoNight()
@@ -63,6 +76,7 @@ public class daynightchange : MonoBehaviour {
         check_day = false;
         RenderSettings.skybox = night;
         enemy.SetActive(true);
+        enemyOriginal.SetActive(true);
         gun.SetActive(true);
         score.SetActive(true);
         //Debug.Log(enemy.name);
