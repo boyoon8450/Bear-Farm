@@ -30,16 +30,16 @@ public class DataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    // Use this for initialization
-    void Start()
-    {
         int i = 0;
+        intimacyStandard[0] = 0;
+        intimacyStandard[1] = 19;
+        intimacyStandard[2] = 59;
+        intimacyStandard[3] = 99;
+        intimacyStandard[4] = 199;
         for (i = 0; i < STANDARDSIZE; i++)
         {
             //일단 둘 다 50부터 250까지로 설정해 둠 ㅇ0ㅇ)
-            intimacyStandard[i] = 50 * (i + 1);
             scoreStandard[i] = 50 * (i + 1);
             Debug.Log("scoreStandard[" + i + "] is " + scoreStandard[i]);
         }
@@ -51,10 +51,9 @@ public class DataManager : MonoBehaviour
     //데이터 로드
     public static void Load()
     {
-        string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/0/0/0/0/0/0/0/0/0").Split('/');
-        //string[] t_haveBear = PlayerPrefs.GetString("BearInfo", "1/1/1/1/1/1/1/1/1/1").Split('/');
-        string[] t_bearIntimacy = PlayerPrefs.GetString("BearIntimacy", "0/0/0/0/0/0/0/0/0/0").Split('/');
-        totalIntimacy = PlayerPrefs.GetInt("Intimacy", 0);
+        string[] t_haveBear = PlayerPrefs.GetString("Bear", "1/0/0/0/0/0/0/0/0/0").Split('/');
+        //string[] t_bearIntimacy = PlayerPrefs.GetString("BearIntimacy", "0/0/0/0/0/0/0/0/0/0").Split('/');
+        totalIntimacy = PlayerPrefs.GetInt("T_Intimacy", 0);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
 
         int i;
@@ -62,6 +61,7 @@ public class DataManager : MonoBehaviour
         for (i = 0; i < BEARSIZE; i++)
         {
             haveBear[i] = int.Parse(t_haveBear[i]);
+            Debug.Log("haveBear[" + i + "] is " + haveBear[i]);
             if(haveBear[i] == 1)
             {
                 if (i < 5)
@@ -69,15 +69,15 @@ public class DataManager : MonoBehaviour
                 else
                     score_BearNum++;
             }
-            bearIntimacy[i] = int.Parse(t_bearIntimacy[i]);
+            //bearIntimacy[i] = int.Parse(f_bearIntimacy[i]);
         }
     }
 
     public static void Save()
     {
-        PlayerPrefs.SetString("BearInfo", makeString(haveBear));
-        PlayerPrefs.SetString("BearIntimacy", makeString(bearIntimacy));
-        PlayerPrefs.SetInt("Intimacy", totalIntimacy);
+        PlayerPrefs.SetString("Bear", makeString(haveBear));
+        //PlayerPrefs.SetString("BearIntimacy", makeString(bearIntimacy));
+        PlayerPrefs.SetInt("T_Intimacy", totalIntimacy);
         PlayerPrefs.SetInt("HighScore", highScore);
     }
 

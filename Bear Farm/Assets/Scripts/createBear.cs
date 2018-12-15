@@ -15,14 +15,18 @@ public class createBear : MonoBehaviour {
         {
             bears[i] = GameObject.Find(name + (char)('A' + i));
         }
+
+        setBear();
 	}
 	
 	// Update is called once per frame
-	void setBear () {
+	public void setBear () {
         for(int i = 0; i < 10; i++)
         {
+            //Debug.Log(i+" haveBear : " + DataManager.haveBear[i]);
             if(DataManager.haveBear[i] == 1)
             {
+                //Debug.Log("setbear : " + i + "is true");
                 bears[i].SetActive(true);
             }
             else
