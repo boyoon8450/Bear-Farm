@@ -17,7 +17,7 @@ public class pauseMenu : MonoBehaviour
 
     public GameObject galleryM;
     AudioSource source;
-
+    AudioSource enemySound;
     // Use this for initialization
     void Start()
     {
@@ -28,7 +28,7 @@ public class pauseMenu : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         galleryM = GameObject.Find("GalleryManager");
         source = gameObject.GetComponent<AudioSource>();
-
+        enemySound = GameObject.Find("Enemy").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class pauseMenu : MonoBehaviour
             pauseMenuPanel.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y+1f, camera.transform.position.z)+ camera.transform.forward * 3f;
             pauseMenuPanel.transform.rotation = camera.transform.rotation;
             pauseMenuPanel.SetActive(true);
-
+            enemySound.Stop();
         }
         else if (!pause)//정지상태가 아니라면 다시 원래대로 돌아간다
         {
