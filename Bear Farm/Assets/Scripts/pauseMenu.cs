@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour
 {
-    public bool pause;
+    static public bool pause;
+    static public bool galleryOn;
     public bool optionOn;
     bool GalleryOn;
     public GameObject pauseMenuPanel;
     //public GameObject titleMenu;
     public GameObject optionMenu;
     public GameObject camera;
+
+    public GameObject galleryM;
+    AudioSource source;
 
     // Use this for initialization
     void Start()
@@ -22,13 +26,15 @@ public class pauseMenu : MonoBehaviour
         Time.timeScale = 1;//scene 로드될때 사물들이 움직이게 한다
         optionMenu.SetActive(false);
         pauseMenuPanel.SetActive(false);
+        galleryM = GameObject.Find("GalleryManager");
+        source = gameObject.GetComponent<AudioSource>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !optionOn)//뒤로를 누르면 정지메뉴 나타난다 이때 option 창도 커져있으면 안된다
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionOn && !galleryOn)//뒤로를 누르면 정지메뉴 나타난다 이때 option 창도 커져있으면 안된다
         {
             onPause();
         }
@@ -66,11 +72,13 @@ public class pauseMenu : MonoBehaviour
 
     public void onExitClick()
     {
+        source.Play();
         Application.Quit();
     }
 
     public void onBackClick()
     {
+        source.Play();
         optionMenu.SetActive(false);
         pauseMenuPanel.SetActive(true);
         optionOn = false;
@@ -78,11 +86,21 @@ public class pauseMenu : MonoBehaviour
 
     public void onOptionClick()
     {
+        source.Play();
         optionMenu.transform.position = pauseMenuPanel.transform.position;
         optionMenu.transform.rotation = pauseMenuPanel.transform.rotation;
         pauseMenuPanel.SetActive(false);
         optionMenu.SetActive(true);
         optionOn = true;
+    }
+
+    public void onGalleryClick()
+    {
+        source.Play();
+        galleryOn = true;
+        galleryM.GetComponent<GalleryManager>().showGallery();
+        pauseMenuPanel.SetActive(false);
+        //optionMenu.SetActive(false);
     }
 
 }

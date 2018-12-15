@@ -56,19 +56,22 @@ public class GalleryManager : MonoBehaviour
             if (!background.activeInHierarchy)
             {
                 //print("hi~!!!!! active");
-                showGallery();
+                //showGallery();
             }
             else
             {
                 turnOffGallery();
+                pauseMenu.galleryOn = false;
+                pauseMenu.pause = !pauseMenu.pause;
+                Time.timeScale = 1;
             }
                 
         }
     }
 
-    void showGallery()
+    public void showGallery()
     {
-        gameObject.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) +  Camera.transform.forward;
+        gameObject.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y, Camera.transform.position.z) + Camera.transform.forward * 0.5f;
         gameObject.transform.rotation = Camera.transform.rotation;
 
         background.SetActive(true);

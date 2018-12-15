@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     private Transform player;
-    int MoveSpeed = 1;
+    int MoveSpeed = 2;
     int MaxDist = 20;
     int MinDist = 1;
-    public float health = 50f;
 
     public Transform[] spawnPoints;
 
@@ -20,90 +19,69 @@ public class EnemyScript : MonoBehaviour
     int spawnPointIndex;
     public int score = 0;
     public Text scoreText;
-    private int hitpoints = 1;
+    private int hitpoints = 0;
+    bool isDead = false;
+    GameObject bullet;
 
     void Start()
     {
-        enemyAnim = GameObject.Find("enemyController").GetComponent<Animator>();
         player = GameObject.Find("Player").GetComponent<Transform>();
+        bullet = GameObject.Find("Bullet");
     }
 
     void Update()
     {
         transform.LookAt(player);
+
         if (Vector3.Distance(transform.position, player.position) > MinDist)
         {
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
             if (Vector3.Distance(transform.position, player.position) <= MinDist)
             {
-                //곰돌이 친밀도 하락
-                //아니면 OnTriggerEnter에서 친밀도 하락 조절
+                DataManager.totalIntimacy -= 10;
+                NewSpawn();
+
+                TakeDamage();
             }
         }
-        
+
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
-        Debug.Log("Take Damage " + gameObject.name);
-    //    enemyAnim.SetBool("isDead", true);
-
-    //    if (enemyAnim.GetBool("isDead") == true)
-    //    {
-            gameObject.SetActive(false);
-            this.transform.parent.gameObject.SetActive(false);
-    //    }
+        gameObject.SetActive(false);
 
     }
 
-    void NewSpawn()
+    public void NewSpawn()
     {
         if (!isCreated)
         {
-            
             gameObject.SetActive(true);
-            this.transform.parent.gameObject.SetActive(true);
-            Debug.Log("spawn");
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
-            Debug.Log("spawn2");
+            
             Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            Debug.Log("spawnfinish");
+            Debug.Log(spawnPointIndex);
             isCreated = true;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet" && !isDead)
         {
-            //  hitpoints--;
-
-            //   if (hitpoints >= 0)
-            //   {
-            if (gameObject.name == "enemyController")
+            hitpoints++;
+            isDead = true;
+            if (hitpoints == 1)
             {
-                score = score + 50;
-
-                Debug.Log("bullet" + gameObject.name);
-
+                score = score + 30;
                 scoreText.text = "Score : " + score.ToString();
-                TakeDamage();
+                checkBear.canGetBear(1, score);
+
                 NewSpawn();
 
-
+                TakeDamage();
             }
-
-                
-
-        //    }
-                
-
-        }
-
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("player");
-            //곰돌이 친밀도 하락
         }
     }
 }
