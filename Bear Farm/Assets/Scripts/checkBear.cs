@@ -57,6 +57,10 @@ public class checkBear : MonoBehaviour
                         Debug.Log("return 0 !!!"+num);
                         return i-1; // 해금될 수 있는 index의 최대를 return해줌
                     }
+                    if (num >= DataManager.intimacyStandard[4])
+                    {
+                        return 4;
+                    }
                 }
                 break;
             case 1:
@@ -67,6 +71,10 @@ public class checkBear : MonoBehaviour
                     {
                         Debug.Log("return1!!!");
                         return i-1; // 해금될 수 있는 index의 최대를 return해줌
+                    }
+                    if (num >= DataManager.scoreStandard[4])
+                    {
+                        return 4;
                     }
                 }
                 break;

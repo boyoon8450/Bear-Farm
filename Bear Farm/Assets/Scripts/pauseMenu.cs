@@ -96,6 +96,7 @@ public class pauseMenu : MonoBehaviour
 
     public void onGalleryClick()
     {
+        source.Play();
         galleryOn = true;
         galleryM.GetComponent<GalleryManager>().showGallery();
         pauseMenuPanel.SetActive(false);
