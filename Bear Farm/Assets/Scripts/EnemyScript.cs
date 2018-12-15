@@ -17,7 +17,7 @@ public class EnemyScript : MonoBehaviour
 
     public GameObject enemyPrefab;
     int spawnPointIndex;
-    public int score = 0;
+    //public int score = 0;
     public Text scoreText;
     private int hitpoints = 0;
     bool isDead = false;
@@ -117,16 +117,18 @@ public class EnemyScript : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bullet" && !isDead)
+        if (other.gameObject.tag == "Bullet") //&& !isDead)
         {
-            hitpoints++;
-            isDead = true;
-            if (hitpoints == 1)
+         //   hitpoints++;
+        //    isDead = true;
+        //    if (hitpoints == 1)
             {
-                score = score + 30;
-                scoreText.text = "Score : " + score.ToString();
-                dataMG.GetComponent<checkBear>().canGetBear(1, score);
-
+                Debug.Log(ScoreScript.score);
+                Debug.Log(gameObject.name+" "+ScoreScript.score);
+                ScoreScript.score = ScoreScript.score + 30;
+                scoreText.text = "Score : " + ScoreScript.score.ToString();
+                dataMG.GetComponent<checkBear>().canGetBear(1, ScoreScript.score);
+                Debug.Log("Score "+ ScoreScript.score);
                 NewSpawn();
 
                 TakeDamage();
