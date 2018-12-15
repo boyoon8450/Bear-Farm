@@ -29,6 +29,11 @@ public class EnemyScript : MonoBehaviour
     public GameObject DayNightManager;
     daynightchange daynightchange;
 
+    //인아 sound effect 때문
+    AudioSource sound;
+    public AudioClip collide;
+    public GameObject Managers;
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
@@ -37,6 +42,8 @@ public class EnemyScript : MonoBehaviour
 
         //인아 day-night 바뀌는 코드 때문
         daynightchange = DayNightManager.GetComponent<daynightchange>();
+        //소리
+        sound = Managers.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -48,6 +55,8 @@ public class EnemyScript : MonoBehaviour
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
             if (Vector3.Distance(transform.position, player.position) <= MinDist)
             {
+                sound.PlayOneShot(collide, 0.2f);
+
                 DataManager.totalIntimacy -= 10;
                 NewSpawn();
 
