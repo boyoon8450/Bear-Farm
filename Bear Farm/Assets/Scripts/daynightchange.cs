@@ -18,6 +18,9 @@ public class daynightchange : MonoBehaviour {
     public AudioClip backday;
     public AudioClip backnight;
 
+    GameObject Data;
+
+
 	// Use this for initialization
 	void Start () {
         check_day = true;
@@ -39,6 +42,9 @@ public class daynightchange : MonoBehaviour {
 
         day = RenderSettings.skybox;
 
+        Data = GameObject.Find("DataManager");
+        
+
 
     }
 
@@ -56,6 +62,8 @@ public class daynightchange : MonoBehaviour {
         music.clip = backday;
         music.volume = 0.4f;
         music.Play();
+
+        Data.GetComponent<createBear>().setBear();
     }
 
     public void changetoNight()

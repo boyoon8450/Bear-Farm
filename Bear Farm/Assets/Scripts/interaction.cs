@@ -9,18 +9,8 @@ public class interaction : MonoBehaviour {
     public string obj_name; //cake 등의 오브젝트
 
     GameObject interact_obj; //cake 등의 오브젝트
-    public int interaction_B; //eveilbearB의 interacton rate
-    public int interaction_A; //eveilbearA의 interacton rate
-    public int interaction_C; //eveilbearA의 interacton rate
-    public int interaction_D; //eveilbearA의 interacton rate
-    public int interaction_E; //eveilbearA의 interacton rate
-    public int interaction_F; //eveilbearA의 interacton rate
-    public int interaction_G; //eveilbearA의 interacton rate
-    public int interaction_H; //eveilbearA의 interacton rate
-    public int interaction_I; //eveilbearA의 interacton rate
-    public int interaction_J; //eveilbearA의 interacton rate
-    public int interaction_K; //eveilbearA의 interacton rate
-    public int interaction_L; //eveilbearA의 interacton rate
+   // public int interaction; //interacton rate
+
 
     public int interaction_count; //밤낮 바뀌는거 때문에 5회 채우면 바뀜
 
@@ -33,11 +23,16 @@ public class interaction : MonoBehaviour {
     AudioSource sound;
     public AudioClip intearct_sound;
 
+    GameObject Data;
+
+
     // Use this for initialization
     void Start () {
         daynightchange = DayNightManager.GetComponent<daynightchange>();
         interaction_count = 0;
         sound = gameObject.GetComponent<AudioSource>();
+
+        Data = GameObject.Find("DataManager");
     }
 	
 	// Update is called once per frame
@@ -57,7 +52,8 @@ public class interaction : MonoBehaviour {
                 //B곰 //기본
                 if (string.Compare(bear_name, "EvilbearB") == 0)
                 {
-                    interaction_B += 10;
+                    DataManager.totalIntimacy  += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -71,7 +67,8 @@ public class interaction : MonoBehaviour {
                 //A곰
                 else if (string.Compare(bear_name, "EvilbearA") == 0)
                 {
-                    interaction_A += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -84,7 +81,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearC") == 0)
                 {
-                    interaction_C += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -97,7 +95,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearD") == 0)
                 {
-                    interaction_D += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -110,7 +109,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearE") == 0)
                 {
-                    interaction_E += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -123,7 +123,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearF") == 0)
                 {
-                    interaction_F += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -136,7 +137,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearG") == 0)
                 {
-                    interaction_G += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -149,7 +151,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearH") == 0)
                 {
-                    interaction_H += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -162,7 +165,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearI") == 0)
                 {
-                    interaction_I += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -175,7 +179,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearJ") == 0)
                 {
-                    interaction_J += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -188,7 +193,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearK") == 0)
                 {
-                    interaction_K += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
@@ -201,7 +207,8 @@ public class interaction : MonoBehaviour {
                 }
                 else if (string.Compare(bear_name, "EvilbearL") == 0)
                 {
-                    interaction_L += 10;
+                    DataManager.totalIntimacy += 10;
+                    Data.GetComponent<checkBear>().canGetBear(0, DataManager.totalIntimacy);
                     interact_obj = GameObject.Find(obj_name);
                     interact_obj.SetActive(false);
                     gazed_at = false;
