@@ -23,10 +23,17 @@ public class EnemyScript : MonoBehaviour
     bool isDead = false;
     GameObject bullet;
 
+    //인아 day-night 바뀌는 코드 때문
+    public GameObject DayNightManager;
+    daynightchange daynightchange;
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         bullet = GameObject.Find("Bullet");
+
+        //인아 day-night 바뀌는 코드 때문
+        daynightchange = DayNightManager.GetComponent<daynightchange>();
     }
 
     void Update()
@@ -55,7 +62,7 @@ public class EnemyScript : MonoBehaviour
 
     public void NewSpawn()
     {
-        if (!isCreated)
+        if (!isCreated && daynightchange.check_day == false)
         {
             gameObject.SetActive(true);
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
