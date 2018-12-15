@@ -80,7 +80,7 @@ public class EnemyScript : MonoBehaviour
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
             
             Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            Debug.Log(spawnPointIndex);
+
             isCreated = true;
         }
     }

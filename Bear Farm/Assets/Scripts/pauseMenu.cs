@@ -18,7 +18,10 @@ public class pauseMenu : MonoBehaviour
     public GameObject galleryM;
     AudioSource source;
     AudioSource enemySound;
-    // Use this for initialization
+    GameObject enemy;
+    public GameObject daynight;
+    daynightchange daynightchange;
+    
     void Start()
     {
         optionOn = false;
@@ -29,6 +32,8 @@ public class pauseMenu : MonoBehaviour
         galleryM = GameObject.Find("GalleryManager");
         source = gameObject.GetComponent<AudioSource>();
         enemySound = GameObject.Find("Enemy").GetComponent<AudioSource>();
+        daynightchange = daynight.GetComponent<daynightchange>();
+
     }
 
     // Update is called once per frame
@@ -51,13 +56,20 @@ public class pauseMenu : MonoBehaviour
             pauseMenuPanel.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y+1f, camera.transform.position.z)+ camera.transform.forward * 3f;
             pauseMenuPanel.transform.rotation = camera.transform.rotation;
             pauseMenuPanel.SetActive(true);
-            enemySound.Stop();
+
+            if (!daynightchange.check_day)
+            {
+                enemy = GameObject.FindGameObjectWithTag("Enemy");
+                enemySound = enemy.GetComponent<AudioSource>();
+                enemySound.Stop();
+            }
         }
         else if (!pause)//정지상태가 아니라면 다시 원래대로 돌아간다
         {
             pauseMenuPanel.SetActive(false);
             Time.timeScale = 1;
-
+            if (!daynightchange.check_day)
+                enemySound.Play();
         }
     }
 
