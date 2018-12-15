@@ -6,11 +6,13 @@ public class checkBear : MonoBehaviour
 {
     GameObject unlockImg;
     GameObject Camera;
+    GameObject dManager;
 
     private void Start()
     {
         Camera = GameObject.Find("Main Camera");
         unlockImg = GameObject.Find("unlockedImg");
+        dManager = GameObject.Find("DataManager");
         unlockImg.SetActive(false);
     }
 
@@ -36,6 +38,8 @@ public class checkBear : MonoBehaviour
                         unlockImg.transform.rotation = Camera.transform.rotation;
                         StartCoroutine(waiting());
                         Debug.Log("intimacy : bear created!!");
+                        dManager.GetComponent<createBear>().setBear();
+
                     }
                     break;
                 case 1:
