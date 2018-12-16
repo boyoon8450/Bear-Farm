@@ -33,7 +33,6 @@ public class pauseMenu : MonoBehaviour
         source = gameObject.GetComponent<AudioSource>();
         enemySound = GameObject.Find("Enemy").GetComponent<AudioSource>();
         daynightchange = daynight.GetComponent<daynightchange>();
-
     }
 
     // Update is called once per frame
