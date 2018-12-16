@@ -32,6 +32,7 @@ public class MovePlayer : MonoBehaviour
     //인아 soundeffect
     AudioSource sound;
     public AudioClip gunfire;
+    AudioSource sound_gunfire;
 
   
 
@@ -48,6 +49,11 @@ public class MovePlayer : MonoBehaviour
 
         //인아 sound effect
         sound = gameObject.GetComponent<AudioSource>();
+        sound_gunfire = GameObject.Find("Managers").GetComponent<AudioSource>();
+
+
+
+
     }
 
     // Update is called once per frame
@@ -59,20 +65,22 @@ public class MovePlayer : MonoBehaviour
 
 
         //마우스 클릭하면 총알이 발사된다
-        if (Input.GetButtonDown("Fire1") && daynightchange.check_day==false)
+        if (Input.GetButtonDown("Fire1") && daynightchange.check_day == false)
         {
-            sound.PlayOneShot(gunfire, 0.2f);
+            sound_gunfire.PlayOneShot(gunfire, 0.2f);
             Fire();
         }
 
-        if (rb.velocity.magnitude < 0.1f)
+        if (rb.velocity.magnitude > 0.1f && !sound.isPlaying)
         {
+            sound.volume = 1;
+            Debug.Log("walki");
             sound.Play();
         }
-        else
-        {
-            //sound.Pause();
-        }
+        else if (rb.velocity.magnitude < 0.1f)
+            sound.Pause();
+
+
 
     }
 

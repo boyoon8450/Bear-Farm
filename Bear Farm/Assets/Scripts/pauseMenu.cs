@@ -21,6 +21,8 @@ public class pauseMenu : MonoBehaviour
     GameObject enemy;
     public GameObject daynight;
     daynightchange daynightchange;
+
+    
     
     void Start()
     {
@@ -33,6 +35,7 @@ public class pauseMenu : MonoBehaviour
         source = gameObject.GetComponent<AudioSource>();
         enemySound = GameObject.Find("Enemy").GetComponent<AudioSource>();
         daynightchange = daynight.GetComponent<daynightchange>();
+
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class pauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !optionOn && !galleryOn)//뒤로를 누르면 정지메뉴 나타난다 이때 option 창도 커져있으면 안된다
         {
+            
             onPause();
         }
 
