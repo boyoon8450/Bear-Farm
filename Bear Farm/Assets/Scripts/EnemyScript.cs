@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
     Animator enemyAnim;
     bool isCreated;
 
-    public GameObject enemyPrefab;
+    //public GameObject enemyPrefab;
     int spawnPointIndex;
     //public int score = 0;
     public Text scoreText;
@@ -45,8 +45,9 @@ public class EnemyScript : MonoBehaviour
         daynightchange = DayNightManager.GetComponent<daynightchange>();
         //소리
         sound = Managers.GetComponent<AudioSource>();
-
+        isCreated = false;
         enemyOriginal = GameObject.Find("EnemyOriginal");
+        
     }
 
     void Awake()
@@ -83,7 +84,7 @@ public class EnemyScript : MonoBehaviour
                 enemy.SetActive(false);
             }
         }
-
+       // NewSpawn();
 
     }
 
@@ -95,9 +96,9 @@ public class EnemyScript : MonoBehaviour
 
     public void NewSpawn()
     {
-        if (!isCreated && daynightchange.check_day == false)
+        if (!isCreated && !daynightchange.check_day)
         {
-            Debug.Log("newspawn");
+            Debug.Log("New Spawn");
             gameObject.SetActive(true);
             Debug.Log(gameObject.name);
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
