@@ -77,9 +77,10 @@ public class daynightchange : MonoBehaviour {
         RenderSettings.skybox = night;
         //enemy.SetActive(true);
         enemyOriginal.SetActive(true);
+        enemyOriginal.GetComponent<EnemyScript>().isCreated = false;
+        enemyOriginal.GetComponent<EnemyScript>().NewSpawn();
         gun.SetActive(true);
         score.SetActive(true);
-        //Debug.Log(enemy.name);
         music.clip = backnight;
         music.volume = 1;
         music.Play();
