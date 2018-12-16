@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
     public Transform[] spawnPoints;
 
     Animator enemyAnim;
-    bool isCreated;
+    public bool isCreated;
 
     //public GameObject enemyPrefab;
     int spawnPointIndex;
@@ -45,7 +45,7 @@ public class EnemyScript : MonoBehaviour
         daynightchange = DayNightManager.GetComponent<daynightchange>();
         //소리
         sound = Managers.GetComponent<AudioSource>();
-        isCreated = false;
+        //isCreated = false;
         enemyOriginal = GameObject.Find("EnemyOriginal");
         
     }
@@ -78,10 +78,11 @@ public class EnemyScript : MonoBehaviour
 
         if (daynightchange.check_day == true)
         {
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            enemy = GameObject.Find("EnemyOriginal(Clone)");
             if(enemy.activeSelf==true)
             {
-                enemy.SetActive(false);
+                //enemy.SetActive(false);
+                Destroy(enemy);
             }
         }
        // NewSpawn();
@@ -90,29 +91,20 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeDamage()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
 
     }
 
     public void NewSpawn()
     {
-        if (!isCreated && !daynightchange.check_day)
-        {
-            Debug.Log("New Spawn");
+        //if (!isCreated && !daynightchange.check_day)
+            if (!daynightchange.check_day)
+            {
             gameObject.SetActive(true);
             Debug.Log(gameObject.name);
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
-            //enemyOriginal.SetActive(true);
-
-            //enemyPrefab = enemyOriginal;
             Instantiate(enemyOriginal, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            Debug.Log("여기까지");
-            //enemyOriginal.SetActive(false);
-
-            isCreated = true;
-            
-           // Destroy()
         }
     }
 
