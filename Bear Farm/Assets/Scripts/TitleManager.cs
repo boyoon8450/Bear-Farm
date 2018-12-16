@@ -11,6 +11,11 @@ public class TitleManager : MonoBehaviour {
     public GameObject creditMenu;
     AudioSource source;
 
+    bool optionOn;
+    bool creditOn;
+    bool tutorialOn;
+
+
     // Use this for initialization
     void Start () {
         source = gameObject.GetComponent<AudioSource>();
@@ -18,12 +23,31 @@ public class TitleManager : MonoBehaviour {
         optionMenu.SetActive(false);
         creditMenu.SetActive(false);
 	}
-	
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))//스페이스를 메뉴상태에서 누르면 한번씩 뒤로 간다
+        {
+            source.Play();
+            creditMenu.SetActive(false);
+            optionMenu.SetActive(false);
+            titleMenu.SetActive(true);
+        }
+    }
+
     public void onStartClick()
     {
         source.Play();
-        SceneManager.LoadScene("TestNight");
+        DataManager.Load();
+        SceneManager.LoadScene("TestNight_B_KYJ");
+        //DataManager.Load();
     }
+
+    public void onTutorialClick()
+    {
+        source.Play();
+    }
+
 
     public void onOptionClick()
     {
@@ -37,14 +61,6 @@ public class TitleManager : MonoBehaviour {
         source.Play();
         titleMenu.SetActive(false);
         creditMenu.SetActive(true);
-    }
-
-    public void onBackClick()
-    {
-        source.Play();
-        creditMenu.SetActive(false);
-        optionMenu.SetActive(false);
-        titleMenu.SetActive(true);
     }
 
     public void onExitClick()

@@ -49,25 +49,25 @@ public class GalleryManager : MonoBehaviour
         background.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            if (!background.activeInHierarchy)
-            {
-                //print("hi~!!!!! active");
-                //showGallery();
-            }
-            else
-            {
-                turnOffGallery();
-                pauseMenu.galleryOn = false;
-                pauseMenu.pause = !pauseMenu.pause;
-                Time.timeScale = 1;
-            }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown("space"))
+    //    {
+    //        if (!background.activeInHierarchy)
+    //        {
+    //            //print("hi~!!!!! active");
+    //            //showGallery();
+    //        }
+    //        else
+    //        {
+    //            turnOffGallery();
+    //            pauseMenu.galleryOn = false;
+    //            //pauseMenu.pause = !pauseMenu.pause;
+    //            //Time.timeScale = 1;
+    //        }
                 
-        }
-    }
+    //    }
+    //}
 
     public void showGallery()
     {
@@ -118,7 +118,7 @@ public class GalleryManager : MonoBehaviour
 
     }
 
-    void turnOffGallery()
+    public void turnOffGallery()
     {
         for (int i = 0; i < 10; i++)
         {
