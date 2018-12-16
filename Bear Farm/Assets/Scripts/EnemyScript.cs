@@ -78,14 +78,17 @@ public class EnemyScript : MonoBehaviour
 
         if (daynightchange.check_day == true)
         {
+            if (GameObject.Find("EnemyOriginal(Clone)")) { 
             enemy = GameObject.Find("EnemyOriginal(Clone)");
             if(enemy.activeSelf==true)
             {
                 //enemy.SetActive(false);
+
                 Destroy(enemy);
             }
         }
-       // NewSpawn();
+        }
+        // NewSpawn();
 
     }
 
@@ -118,7 +121,7 @@ public class EnemyScript : MonoBehaviour
             {
                 Debug.Log(ScoreScript.score);
                 Debug.Log(gameObject.name+" "+ScoreScript.score);
-                ScoreScript.score = ScoreScript.score + 30;
+                ScoreScript.score = ScoreScript.score + 10;
                 scoreText.text = "Score : " + ScoreScript.score.ToString();
                 dataMG.GetComponent<checkBear>().canGetBear(1, ScoreScript.score);
                 Debug.Log("Score "+ ScoreScript.score);

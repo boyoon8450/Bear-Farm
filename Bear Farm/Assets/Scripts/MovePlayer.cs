@@ -73,8 +73,7 @@ public class MovePlayer : MonoBehaviour
 
         if (rb.velocity.magnitude > 0.1f && !sound.isPlaying)
         {
-            sound.volume = 1;
-            Debug.Log("walki");
+
             sound.Play();
         }
         else if (rb.velocity.magnitude < 0.1f)
