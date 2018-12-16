@@ -5,23 +5,34 @@ using UnityEngine.UI;
 
 public class soundeffectManager : MonoBehaviour {
 
-
+    GameObject Player;
+    GameObject Enemy;
+    GameObject Menu;
+    GameObject Managers;
+    
     AudioSource Player_audio;
-    AudioSource Enemy_audio;
     AudioSource Menu_audio;
     AudioSource Managers_audio;
     AudioSource Enemy_audio2;
+
     Toggle t;
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
 
-        Player_audio = GameObject.Find("Player").GetComponent<AudioSource>();
-        Enemy_audio = GameObject.Find("Enemy").GetComponent<AudioSource>();
-        Menu_audio = GameObject.Find("MenuController").GetComponent<AudioSource>();
-        Managers_audio = GameObject.Find("Managers").GetComponent<AudioSource>();
-        Enemy_audio2 = GameObject.Find("EnemyOriginal").GetComponent<AudioSource>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Player_audio = Player.GetComponent<AudioSource>();
+
+        Enemy = GameObject.Find("EnemyOriginal");
+        Enemy_audio2 = Enemy.GetComponent<AudioSource>();
+
+        Menu = GameObject.Find("MenuController");
+        Menu_audio = Menu.GetComponent<AudioSource>();
+
+        Managers = GameObject.Find("Managers");
+        Managers_audio = Managers.GetComponent<AudioSource>();
+
 
 
 
@@ -34,15 +45,13 @@ public class soundeffectManager : MonoBehaviour {
         if (t.isOn)
         {
             Player_audio.mute = false;
-            Enemy_audio.mute = false;
-            Menu_audio.mute = false;
+                       Menu_audio.mute = false;
             Managers_audio.mute = false;
             Enemy_audio2.mute = false;
         }
         else
         {
             Player_audio.mute = true;
-            Enemy_audio.mute = true;
             Menu_audio.mute = true;
             Managers_audio.mute = true;
             Enemy_audio2.mute = true;
