@@ -65,7 +65,7 @@ public class MovePlayer : MonoBehaviour
 
 
         //마우스 클릭하면 총알이 발사된다
-        if (Input.GetButtonDown("Fire1") && daynightchange.check_day == false)
+        if (Input.GetButtonUp("Fire1") && daynightchange.check_day == false)
         {
             sound_gunfire.PlayOneShot(gunfire, 0.2f);
             Fire();

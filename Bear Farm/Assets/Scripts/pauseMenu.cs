@@ -38,18 +38,18 @@ public class pauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !optionOn && !galleryOn)//세모 혹은 스페이스를 누르면 정지메뉴 나타난다 이때 option 창도 커져있으면 안된다
+        if (Input.GetButtonUp("Jump") && !optionOn && !galleryOn)//세모 혹은 스페이스를 누르면 정지메뉴 나타난다 이때 option 창도 커져있으면 안된다
         {
             onPause();
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && optionOn)//스페이스를 메뉴상태에서 누르면 한번씩 뒤로 간다
+        else if(Input.GetButtonUp("Jump") && optionOn)//스페이스를 메뉴상태에서 누르면 한번씩 뒤로 간다
         {
             source.Play();
             optionMenu.SetActive(false);
             pauseMenuPanel.SetActive(true);
             optionOn = false;
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && galleryOn)
+        else if(Input.GetButtonUp("Jump") && galleryOn)
         {
             source.Play();
             galleryM.GetComponent<GalleryManager>().turnOffGallery();
