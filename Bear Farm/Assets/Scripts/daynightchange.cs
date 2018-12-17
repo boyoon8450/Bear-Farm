@@ -46,7 +46,7 @@ public class daynightchange : MonoBehaviour {
 
         day = RenderSettings.skybox;
 
-        Data = GameObject.Find("DataManager");
+        Data = GameObject.Find("BearManager");
         
 
 

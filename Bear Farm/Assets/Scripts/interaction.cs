@@ -32,7 +32,7 @@ public class interaction : MonoBehaviour {
         interaction_count = 0;
         sound = gameObject.GetComponent<AudioSource>();
 
-        Data = GameObject.Find("DataManager");
+        Data = GameObject.Find("BearManager");
     }
 	
 	// Update is called once per frame
