@@ -12,7 +12,7 @@ public class checkBear : MonoBehaviour
     {
         Camera = GameObject.Find("Main Camera");
         unlockImg = GameObject.Find("unlockedImg");
-        dManager = GameObject.Find("DataManager");
+        dManager = GameObject.Find("BearManager");
         unlockImg.SetActive(false);
     }
 

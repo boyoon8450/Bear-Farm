@@ -41,7 +41,7 @@ public class DataManager : MonoBehaviour
         {
             //일단 둘 다 50부터 250까지로 설정해 둠 ㅇ0ㅇ)
             scoreStandard[i] = 50 * (i + 1);
-            Debug.Log("scoreStandard[" + i + "] is " + scoreStandard[i]);
+           // Debug.Log("scoreStandard[" + i + "] is " + scoreStandard[i]);
         }
         intimacy_BearNum = 0;
         score_BearNum = 0;
@@ -63,7 +63,6 @@ public class DataManager : MonoBehaviour
         for (i = 0; i < BEARSIZE; i++)
         {
             haveBear[i] = int.Parse(t_haveBear[i]);
-            Debug.Log("haveBear[" + i + "] is " + haveBear[i]);
             if(haveBear[i] == 1)
             {
                 if (i < 5)
@@ -73,7 +72,6 @@ public class DataManager : MonoBehaviour
             }
             //bearIntimacy[i] = int.Parse(f_bearIntimacy[i]);
         }
-
  
     }
 
