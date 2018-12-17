@@ -40,7 +40,7 @@ public class EnemyScript : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         bullet = GameObject.Find("Bullet");
-        dataMG = GameObject.Find("DataManager");
+        dataMG = GameObject.Find("BearManager");
         //인아 day-night 바뀌는 코드 때문
         daynightchange = DayNightManager.GetComponent<daynightchange>();
         //소리
