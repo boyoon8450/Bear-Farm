@@ -13,9 +13,9 @@ public class EnemyScript : MonoBehaviour
     public Transform[] spawnPoints;
 
     Animator enemyAnim;
-    bool isCreated;
+    public bool isCreated;
 
-    public GameObject enemyPrefab;
+    //public GameObject enemyPrefab;
     int spawnPointIndex;
     //public int score = 0;
     public Text scoreText;
@@ -45,8 +45,9 @@ public class EnemyScript : MonoBehaviour
         daynightchange = DayNightManager.GetComponent<daynightchange>();
         //소리
         sound = Managers.GetComponent<AudioSource>();
-
+        //isCreated = false;
         enemyOriginal = GameObject.Find("EnemyOriginal");
+        
     }
 
     void Awake()
@@ -77,41 +78,36 @@ public class EnemyScript : MonoBehaviour
 
         if (daynightchange.check_day == true)
         {
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            if (GameObject.Find("EnemyOriginal(Clone)")) { 
+            enemy = GameObject.Find("EnemyOriginal(Clone)");
             if(enemy.activeSelf==true)
             {
-                enemy.SetActive(false);
+                //enemy.SetActive(false);
+
+                Destroy(enemy);
             }
         }
-
+        }
+        // NewSpawn();
 
     }
 
     public void TakeDamage()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
 
     }
 
     public void NewSpawn()
     {
-        if (!isCreated && daynightchange.check_day == false)
-        {
-            Debug.Log("newspawn");
+        //if (!isCreated && !daynightchange.check_day)
+            if (!daynightchange.check_day)
+            {
             gameObject.SetActive(true);
             Debug.Log(gameObject.name);
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
-            //enemyOriginal.SetActive(true);
-
-            //enemyPrefab = enemyOriginal;
             Instantiate(enemyOriginal, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            Debug.Log("여기까지");
-            //enemyOriginal.SetActive(false);
-
-            isCreated = true;
-            
-           // Destroy()
         }
     }
 
@@ -125,7 +121,7 @@ public class EnemyScript : MonoBehaviour
             {
                 Debug.Log(ScoreScript.score);
                 Debug.Log(gameObject.name+" "+ScoreScript.score);
-                ScoreScript.score = ScoreScript.score + 30;
+                ScoreScript.score = ScoreScript.score + 10;
                 scoreText.text = "Score : " + ScoreScript.score.ToString();
                 dataMG.GetComponent<checkBear>().canGetBear(1, ScoreScript.score);
                 Debug.Log("Score "+ ScoreScript.score);

@@ -47,7 +47,7 @@ public class interaction : MonoBehaviour {
 
         if (gazed_at)
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 //B곰 //기본
                 if (string.Compare(bear_name, "EvilbearB") == 0)

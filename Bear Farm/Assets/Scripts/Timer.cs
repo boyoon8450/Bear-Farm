@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public Text timerText;
-    int startTime=30;
+    //타이머는 원래 30초
+    int startTime= 30;
     float currentTime;
 
     //인아 day-night 바뀌는 코드 때문
