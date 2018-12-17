@@ -32,6 +32,7 @@ public class MovePlayer : MonoBehaviour
     //인아 soundeffect
     AudioSource sound;
     public AudioClip gunfire;
+    AudioSource sound_gunfire;
 
   
 
@@ -48,6 +49,11 @@ public class MovePlayer : MonoBehaviour
 
         //인아 sound effect
         sound = gameObject.GetComponent<AudioSource>();
+        sound_gunfire = GameObject.Find("Managers").GetComponent<AudioSource>();
+
+
+
+
     }
 
     // Update is called once per frame
@@ -59,29 +65,33 @@ public class MovePlayer : MonoBehaviour
 
 
         //마우스 클릭하면 총알이 발사된다
-        if (Input.GetButtonDown("Fire1") && daynightchange.check_day==false)
+        if (Input.GetButtonUp("Fire1") && daynightchange.check_day == false)
         {
-            sound.PlayOneShot(gunfire, 0.2f);
+            sound_gunfire.PlayOneShot(gunfire, 0.2f);
             Fire();
         }
 
-        if (rb.velocity.magnitude < 0.1f)
+        if (rb.velocity.magnitude > 0.1f && !sound.isPlaying)
         {
+
             sound.Play();
         }
-        else
-        {
-            //sound.Pause();
-        }
+        else if (rb.velocity.magnitude < 0.1f)
+            sound.Pause();
+
+
 
     }
 
     //player가 보고 있는 시선 방향에 따라 움직인다
     public void movePlayer()
     {
-        
-        Vector3 movement = speed * new Vector3(vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x, 0f, vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z);
-        //Vector3 movement = speed * new Vector3(-vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z, 0f, -vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x);
+        //컴퓨터에서 테스트할때 이동
+        //Vector3 movement = speed * new Vector3(vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x, 0f, vrCamera.TransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z);
+
+        //컨트롤러로 실제 플레이할때 이동
+        Vector3 movement = speed * new Vector3(-vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).z, 0f, -vrCamera.InverseTransformDirection(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).x);
+
         movement.y = rb.velocity.y;
         rb.velocity = movement;
         Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
